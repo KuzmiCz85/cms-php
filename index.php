@@ -14,6 +14,9 @@ spl_autoload_register('autoloader');
 $Db = new Db;
 Db::connect("127.0.0.1", "cms_db", "root", "");
 
-echo 'Simple website CMS';
+$router = new RouterController;
+$router->getPage($_SERVER['REQUEST_URI']);
+
+echo "Simple website CMS";
 
 ?>

@@ -13,9 +13,16 @@ class Db {
   {
     try {
       self::$stream = new PDO("mysql:host=$host;dbname=$db", $user, $pwd, self::$options);
-      echo ("Connected successfully");
+      echo ("Connected successfully<br>");
     } catch(PDOException $err) {
-      echo "Connection failed: " . $err->getMessage();
+      echo "Connection failed: " . $err->getMessage() . "<br>";
     }
+  }
+
+  public static function querySingle(string $query, array $params = array()): array|bool
+  {
+    $result = self::$stream->prepare($query);
+    $result->execute($params);
+    return $result->fetch(PDO::FETCH_ASSOC);
   }
 }
