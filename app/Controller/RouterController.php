@@ -1,16 +1,23 @@
 <?php
-class RouterController {
+class RouterController extends Controller {
 
-  public function getPage(string $url): void
+  protected Controller $controller;
+
+  public function process(array $params): void
   {
+    $url = $params[0];
     $url = ltrim($url, "/");
     $url = trim($url);
 
-    $page = Db::querySingle('SELECT * FROM pages WHERE name = ?', array($url));
+    // Check if user wants to enter administration
+    if ($url === "cms") {
+      $this->controller = new AdminController;
+      $this->controller->process(array($url));
+      $this->controller->renderView();
+    }
 
-    if(empty($page))
-      exit;
-
-    echo "Called page has id " . $page['id'] . "<br>";
+    // Continue to website
+    else
+      echo "hello to my website";
   }
 }

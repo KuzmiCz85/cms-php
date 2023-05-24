@@ -11,12 +11,9 @@ function autoloader(string $class): void
 spl_autoload_register('autoloader');
 
 // Database connection
-$Db = new Db;
 Db::connect("127.0.0.1", "cms_db", "root", "");
 
+// Router controller instance
 $router = new RouterController;
-$router->getPage($_SERVER['REQUEST_URI']);
-
-echo "Simple website CMS";
-
-?>
+$router->process(array($_SERVER['REQUEST_URI']));
+$router->renderView();
