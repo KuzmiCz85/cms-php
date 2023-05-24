@@ -1,1 +1,20 @@
-<p>main page for CMS editor</p>
+<!DOCTYPE html>
+<html lang="cs-cz">
+  <head>
+    <base href="/localhost" />
+    <meta charset="UTF-8" />
+  </head>
+
+  <p>main page for CMS editor</p>
+
+  <a href="cms/pages">Get pages</a>
+
+  <?php if (isset($pages)) : ?>
+    <ul>
+      <?php foreach ($pages as $page) : ?>
+        <li><?= $page['name'] ?></li>
+      <?php endforeach ?>
+    </ul>
+
+  <?php endif ?>
+</html>

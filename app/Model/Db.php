@@ -13,16 +13,29 @@ class Db {
   {
     try {
       self::$stream = new PDO("mysql:host=$host;dbname=$db", $user, $pwd, self::$options);
-      echo ("Connected successfully<br>");
+      # echo ("Connected successfully<br>");
     } catch(PDOException $err) {
-      echo "Connection failed: " . $err->getMessage() . "<br>";
+      # echo "Connection failed: " . $err->getMessage() . "<br>";
     }
   }
 
-  public static function querySingle(string $query, array $params = array()): array|bool
+  public static function queryOne(string $query, array $params = array()): array|bool
   {
     $result = self::$stream->prepare($query);
     $result->execute($params);
-    return $result->fetch(PDO::FETCH_ASSOC);
+    return $result->fetch();
+  }
+
+  public static function queryAll(string $query, array $params = array()): array|bool
+  {
+    $result = self::$stream->prepare($query);
+    $result->execute($params);
+    return $result->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public static function querySingle(string $query, array $params = array()): string
+  {
+    $result = self::queryOne($query, $params);
+    return $result[0];
   }
 }

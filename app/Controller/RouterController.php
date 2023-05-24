@@ -3,16 +3,29 @@ class RouterController extends Controller {
 
   protected Controller $controller;
 
+  // Proces url to array of parameters
+  private function processUrl(string $url): array
+  {
+    $parsedUrl = parse_url($url);
+    $parsedUrl['path'] = ltrim($parsedUrl['path'], "/");
+    $parsedUrl['path'] = trim($parsedUrl['path']);
+
+    $params = explode("/", $parsedUrl['path']);
+
+    print_r($params);
+    echo "<br>";
+
+    return $params;
+  }
+
   public function process(array $params): void
   {
-    $url = $params[0];
-    $url = ltrim($url, "/");
-    $url = trim($url);
+    $parsedUrl = $this->processUrl($params[0]);
 
     // Check if user wants to enter administration
-    if ($url === "cms") {
+    if ($parsedUrl[0] === "cms") {
       $this->controller = new AdminController;
-      $this->controller->process(array($url));
+      $this->controller->process($parsedUrl);
       $this->controller->renderView();
     }
 

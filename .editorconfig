@@ -12,6 +12,6 @@ insert_final_newline = true
 trim_trailing_whitespace = false
 indent_size = 4
 
-[{*.scss,*.css,*.html,*.js,*.json,*.php,*.ts,*.twig}]
+[{*.scss,*.css,*.html,*.js,*.json,*.phtml,*.php,*.ts,*.twig}]
 indent_style = space
 indent_size = 2
