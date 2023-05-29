@@ -1,20 +1,32 @@
 <!DOCTYPE html>
-<html lang="cs-cz">
+<html>
   <head>
     <base href="/localhost" />
     <meta charset="UTF-8" />
+
+    <title>Simple website CMS</title>
+
+    <link rel="stylesheet" type="text/css" href="app/style.css" />
   </head>
 
-  <p>main page for CMS editor</p>
+  <body>
+    <header>
+      <h1>Main page for CMS editor</h1>
+    </header>
 
-  <a href="cms/pages">Get pages</a>
+    <nav>
+      <a href="cms/pages">Get pages</a>
+    </nav>
 
-  <?php if (isset($pages)) : ?>
-    <ul>
-      <?php foreach ($pages as $page) : ?>
-        <li><?= $page['name'] ?></li>
-      <?php endforeach ?>
-    </ul>
+    <main>
+      <?php if (isset($pages)) : ?>
+        <ul>
+          <?php foreach ($pages as $page) : ?>
+            <li><?= $page['name'] ?></li>
+          <?php endforeach ?>
+        </ul>
 
-  <?php endif ?>
+      <?php endif ?>
+    </main>
+  </body>
 </html>
