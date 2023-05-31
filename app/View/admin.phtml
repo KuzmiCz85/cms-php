@@ -22,11 +22,20 @@
       <?php if (isset($pages)) : ?>
         <ul>
           <?php foreach ($pages as $page) : ?>
-            <li><?= $page['name'] ?></li>
+            <li><?= $page['name'] ?> - <a href="<?= "cms/pages/edit/" . $page['name'] ?>">Upravit</a></li>
           <?php endforeach ?>
         </ul>
 
+      <?php elseif (isset($page)) : ?>
+        <form action="">
+          <label for="name">Jméno stránky</label>
+          <input type="text" id="name" name="name" value="<?= $page['name'] ?>">
+          <input type="submit" value="Uložit">
+        </form>
+
       <?php endif ?>
     </main>
+
+    <script type="module" src="app/script.js"></script>
   </body>
 </html>

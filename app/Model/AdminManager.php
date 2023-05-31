@@ -8,4 +8,14 @@ class AdminManager
       FROM page
     ");
   }
+
+  public function getPage(string $page): array
+  {
+    return Db::queryOne("
+      SELECT *
+      FROM page
+      WHERE name = ?
+    ",
+    array($page));
+  }
 }
