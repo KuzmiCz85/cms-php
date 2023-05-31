@@ -10,7 +10,7 @@ abstract class Controller {
   {
     if ($this->view) {
       extract($this->data);
-      require("./app/View/" . $this->view . ".phtml");
+      require("./app/" . $this->view . ".phtml");
     }
   }
 }

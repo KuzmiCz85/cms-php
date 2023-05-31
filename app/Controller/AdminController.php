@@ -16,6 +16,6 @@ class AdminController extends Controller {
       $this->data['page'] = $adminMn->getPage($params[3]);
     }
 
-    $this->view = "admin";
+    $this->view = "admin/main";
   }
 }

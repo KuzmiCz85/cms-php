@@ -6,7 +6,7 @@
 
     <title>Simple website CMS</title>
 
-    <link rel="stylesheet" type="text/css" href="app/style.css" />
+    <link rel="stylesheet" type="text/css" href="app/admin/main.css" />
   </head>
 
   <body>
@@ -27,15 +27,11 @@
         </ul>
 
       <?php elseif (isset($page)) : ?>
-        <form action="">
-          <label for="name">Jméno stránky</label>
-          <input type="text" id="name" name="name" value="<?= $page['name'] ?>">
-          <input type="submit" value="Uložit">
-        </form>
+        <?php require('app/admin/components/page/page.phtml') ?>
 
       <?php endif ?>
     </main>
 
-    <script type="module" src="app/script.js"></script>
+    <script type="module" src="app/admin/main.js"></script>
   </body>
 </html>
