@@ -19,13 +19,13 @@ class AdminManager
     array($page));
   }
 
-  public function editPage(string $page, string $newProp): int
+  public function editPage(string $page, stdClass $params): int
   {
     return Db::query("
       UPDATE page
-      SET name = ?
+      SET `" . implode('` = ?, `', array_keys($params)) . "` = ?
       WHERE id = ?
     ",
-    array_merge(array($newProp), array($page)));
+    array_merge(array_values($params), array($page)));
   }
 }

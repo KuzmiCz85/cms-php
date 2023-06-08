@@ -1,5 +1,5 @@
 // Object for storing page props
-const pageProps = new Object;
+const pageProps = { data: {} }
 
 // Store value of element (must have id) to object
 const storeValue = (elem, obj) => {
@@ -37,10 +37,11 @@ const propsService = (section) => {
   propsInputs.forEach(input => {
 
     // Store input value on init
-    storeValue(input, pageProps)
+    storeValue(input, pageProps.data)
+    console.log(pageProps)
 
     // Store new value on change
-    input.addEventListener("change", event => storeValue(input, pageProps))
+    input.addEventListener("change", event => storeValue(input, pageProps.data))
   });
 
   const saveBtn = document.getElementById("saveBtn")
