@@ -30,7 +30,10 @@ class RouterController extends Controller {
     }
 
     // Continue to website
-    else
-      echo "hello to my website";
+    else {
+      $this->controller = new PageController;
+      $this->controller->process($parsedUrl);
+      $this->controller->renderView();
+    }
   }
 }
