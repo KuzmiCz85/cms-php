@@ -1,10 +1,16 @@
 <?php
 
 class AdminController extends Controller {
-
   public function process(array $params): void
   {
     $adminMn = new AdminManager;
+
+    // Save new page data
+    if (isset($params[1]) && $params[1] === "save") {
+      $saveData = json_decode(file_get_contents("php://input"));
+      $adminMn->editPage($saveData->id, $saveData->name);
+      exit;
+    }
 
     // Show list of pages
     if (isset($params[1]) && $params[1] === "pages" && empty($params[2])) {

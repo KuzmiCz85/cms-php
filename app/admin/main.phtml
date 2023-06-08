@@ -22,7 +22,7 @@
       <?php if (isset($pages)) : ?>
         <ul>
           <?php foreach ($pages as $page) : ?>
-            <li><?= $page['name'] ?> - <a href="<?= "cms/pages/edit/" . $page['name'] ?>">Upravit</a></li>
+            <li><?= $page['name'] ?> - <a href="<?= "cms/pages/edit/" . $page['id'] ?>">Upravit</a></li>
           <?php endforeach ?>
         </ul>
 

@@ -1,1 +1,1 @@
-console.log("main.js")
+import "./components/page/page.js"

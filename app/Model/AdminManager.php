@@ -4,7 +4,7 @@ class AdminManager
   public function getPages(): array
   {
     return Db::queryAll("
-      SELECT name
+      SELECT id, name
       FROM page
     ");
   }
@@ -14,8 +14,18 @@ class AdminManager
     return Db::queryOne("
       SELECT *
       FROM page
-      WHERE name = ?
+      WHERE id = ?
     ",
     array($page));
+  }
+
+  public function editPage(string $page, string $newProp): int
+  {
+    return Db::query("
+      UPDATE page
+      SET name = ?
+      WHERE id = ?
+    ",
+    array_merge(array($newProp), array($page)));
   }
 }

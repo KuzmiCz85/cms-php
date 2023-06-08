@@ -19,6 +19,7 @@ class Db {
     }
   }
 
+  // SELECT single row
   public static function queryOne(string $query, array $params = array()): array|bool
   {
     $result = self::$stream->prepare($query);
@@ -26,6 +27,7 @@ class Db {
     return $result->fetch();
   }
 
+  // SELECT all rows
   public static function queryAll(string $query, array $params = array()): array|bool
   {
     $result = self::$stream->prepare($query);
@@ -33,9 +35,18 @@ class Db {
     return $result->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  // SELECT single value
   public static function querySingle(string $query, array $params = array()): string
   {
     $result = self::queryOne($query, $params);
     return $result[0];
+  }
+
+  // General query for INSERT, UPDATE. Returns number of affected rows.
+  public static function query(string $query, array $params = array()): int
+  {
+    $result = self::$stream->prepare($query);
+    $result->execute($params);
+    return $result->rowCount();
   }
 }
