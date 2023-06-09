@@ -1,0 +1,16 @@
+<?php
+  $id = isset($checkbox['id']) ? $checkbox['id'] : null;
+  $label = isset($checkbox['label']) ? $checkbox['label'] : null;
+  $value = isset($checkbox['value']) ? $checkbox['value'] : null;
+  $checked = $value === 1 ? 'checked="true"' : null;
+
+  $attrs = trim(join(' ', [
+    'class="checkbox"',
+    $id ? 'for="' . $id . '"' : null,
+  ]));
+?>
+
+<label <?= $attrs ?>><?= $label ?>
+  <input type="checkbox" id="<?= $id ?>" <?= $checked ?> value="<?= $value ?>">
+  <span class="checkbox-mark"></span>
+</label>

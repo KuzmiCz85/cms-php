@@ -1,0 +1,24 @@
+.checkbox {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: flex;
+}
+
+/* In case of custom checkbox
+
+.checkbox input {
+  Hide default input
+}
+
+.checkbox-mark {
+  Style for basic custom mark
+}
+
+.checkbox input:checked ~ .checkbox-mark {
+  Style for checked custom mark
+}
+
+*/

@@ -1,6 +1,16 @@
 <?php
 class AdminManager
 {
+  private function nullHome(): void
+  {
+    Db::query("
+      UPDATE page
+      SET home = ?
+      WHERE home = ?
+    ",
+    array_merge(array(0), array(1)));
+  }
+
   public function getPages(): array
   {
     return Db::queryAll("
@@ -21,6 +31,13 @@ class AdminManager
 
   public function editPage(string $page, stdClass $params): int
   {
+    $params = (array) $params;  // Conversion from object to array
+
+    // Check if homepage is changed. Turn-off obsolete home if true
+    if ($params['home'] === "1") $this->nullHome();
+
+    print_r($params); // Print for JS console.log
+
     return Db::query("
       UPDATE page
       SET `" . implode('` = ?, `', array_keys($params)) . "` = ?

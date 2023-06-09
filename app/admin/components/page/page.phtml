@@ -4,6 +4,15 @@
   <label>Page name:</label>
   <input type="text" id="name" value="<?= $page['name'] ?>" />
 
+  <?php
+    $checkbox = [
+      'id' => "home",
+      'label' => "Homepage:",
+      'value' => $page['home'],
+    ];
+    require('app/admin/components/checkbox/checkbox.phtml');
+  ?>
+
   <button id="saveBtn" type="button">
     Save
   </button>

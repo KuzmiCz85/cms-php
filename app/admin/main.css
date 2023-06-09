@@ -1,3 +1,2 @@
-body {
-  background-color: lightgrey;
-}
+@import url('./components/checkbox/checkbox.css');
+@import url('./components/page/page.css');
