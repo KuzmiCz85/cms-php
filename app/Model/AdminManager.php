@@ -29,6 +29,16 @@ class AdminManager
     array($page));
   }
 
+  public function getPageBlocks(string $page): array
+  {
+    return Db::queryAll("
+      SELECT *
+      FROM page_block
+      WHERE page = ?
+    ",
+    array($page));
+  }
+
   public function editPage(string $page, stdClass $params): int
   {
     $params = (array) $params;  // Conversion from object to array

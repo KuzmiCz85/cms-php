@@ -20,6 +20,7 @@ class AdminController extends Controller {
     // Show page details
     if (isset($params[2]) && $params[2] === "edit" && !empty($params[3])) {
       $this->data['page'] = $adminMn->getPage($params[3]);
+      $this->data['blocks'] = $adminMn->getPageBlocks($params[3]);
     }
 
     $this->view = "admin/main";

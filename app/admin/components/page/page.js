@@ -44,6 +44,22 @@ const propsService = (section) => {
     input.addEventListener("change", event => storeValue(input, pageProps.data))
   });
 
+  // Blocks service
+  const blocks = section.querySelectorAll(".block")
+
+  if (blocks.length === 0) return
+
+  // Create new property for blocks
+  pageProps['blocks'] = []
+
+  blocks.forEach((block, i) => {
+
+    // Store existing block on init
+    pageProps.blocks.push(`block-${i}`)
+
+    console.log(pageProps)
+  });
+
   const saveBtn = document.getElementById("saveBtn")
 
   if (saveBtn) saveBtn.addEventListener("click", saveBtnSubmit)

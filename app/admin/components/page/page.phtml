@@ -13,6 +13,14 @@
     require('app/admin/components/checkbox/checkbox.phtml');
   ?>
 
+  <?php if (isset($blocks)) : ?>
+    <ul>
+      <?php foreach ($blocks as $block) : ?>
+        <li class="block"><?= $block['name'] ?></li>
+      <?php endforeach ?>
+    </ul>
+  <?php endif ?>
+
   <button id="saveBtn" type="button">
     Save
   </button>
