@@ -8,7 +8,10 @@ class AdminController extends Controller {
     // Save new page data
     if (isset($params[1]) && $params[1] === "save") {
       $page = json_decode(file_get_contents("php://input"));
+      // Edit page main data
       $adminMn->editPage($page->id, $page->data);
+      // Edit page blocks
+      $adminMn->editBlocks($page->id, $page->blocks);
       exit;
     }
 

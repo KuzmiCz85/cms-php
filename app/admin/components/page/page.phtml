@@ -1,24 +1,36 @@
 <section class="page" data-page-id="<?= $page['id'] ?>">
   <h2>Page detail</h2>
 
-  <label>Page name:</label>
-  <input type="text" id="name" value="<?= $page['name'] ?>" />
+  <div class="page__data">
+    <label>Page name:</label>
+    <input type="text" id="name" value="<?= $page['name'] ?>" />
 
-  <?php
-    $checkbox = [
-      'id' => "home",
-      'label' => "Homepage:",
-      'value' => $page['home'],
-    ];
-    require('app/admin/components/checkbox/checkbox.phtml');
-  ?>
+    <?php
+      $checkbox = [
+        'id' => "home",
+        'label' => "Homepage:",
+        'value' => $page['home'],
+      ];
+      require('app/admin/components/checkbox/checkbox.phtml');
+    ?>
+  </div>
 
   <?php if (isset($blocks)) : ?>
-    <ul>
-      <?php foreach ($blocks as $block) : ?>
-        <li class="block"><?= $block['name'] ?></li>
-      <?php endforeach ?>
-    </ul>
+    <div class="page__blocks">
+      <ul>
+        <?php foreach ($blocks as $block) : ?>
+          <li>
+            <div class="block" data-id="<?= $block['id'] ?>">
+              <?= $block['block'] ?> with fields:
+
+              <?php foreach ($block['fields'] as $field) {
+                require('app/admin/components/field/field.phtml');
+              } ?>
+            </div>
+          </li>
+        <?php endforeach ?>
+      </ul>
+    </div>
   <?php endif ?>
 
   <button id="saveBtn" type="button">

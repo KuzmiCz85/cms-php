@@ -1,0 +1,15 @@
+{
+  "type": "basic-block",
+  "name": "basic-block",
+
+  "fields": [
+    {
+      "type": "text_line",
+      "name": "title"
+
+    },{
+      "type": "text_line",
+      "name": "content"
+    }
+  ]
+}
