@@ -10,17 +10,13 @@ const storeValue = (elem, obj) => {
   //console.log(obj)
 };
 
-// Parse blocks data to string
-const parseBlocksData = (blocks) => {
-  blocks.forEach(block => block.data = JSON.stringify(block.data))
-}
-
 // Save button submit
 const saveBtnSubmit = (event) => {
   event.preventDefault()
 
   // Parse blocks data to string
-  pageProps.blocks.forEach(block => block.data = JSON.stringify(block.data))
+  if (pageProps.blocks)
+    pageProps.blocks.forEach(block => block.data = JSON.stringify(block.data))
 
   fetch('cms/save', {
     method: "POST",

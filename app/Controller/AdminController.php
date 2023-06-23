@@ -13,7 +13,7 @@ class AdminController extends Controller {
       // Edit page main data
       $adminMn->editPage($page->id, $page->data);
       // Edit page blocks
-      $adminMn->editPageBlocks($page->id, $page->blocks);
+      if (isset($page->blocks)) $adminMn->editPageBlocks($page->id, $page->blocks);
       exit;
     }
 
