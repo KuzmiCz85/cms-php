@@ -8,12 +8,10 @@ class TemplateManager
     if ($src) $this->source = $src;
   }
 
-  public function include(string $path, string $props = "") : void
+  public function include(string $path, string $data = "") : void
   {
-    if ($props) {
-      $props = json_decode($props);
-    } else
-      $props = null;
+    if ($data) $data = json_decode($data);
+    else $data = null;
 
     require($this->source . $path);
   }

@@ -20,15 +20,21 @@
 
     <main>
       <?php if (isset($pages)) : ?>
-        <ul>
-          <?php foreach ($pages as $page) : ?>
-            <li><?= $page['name'] ?> - <a href="<?= "cms/pages/edit/" . $page['id'] ?>">Upravit</a></li>
-          <?php endforeach ?>
-        </ul>
+        <?php
+          $tempMn->include("group/pages-group/pages-group.phtml", '{
+            "pages": ' . json_encode($pages) . '
+          }');
+        ?>
+
+        <?php
+          $tempMn->include("button/button.phtml", '{
+            "action": "cms/pages/add",
+            "title": "Add page"
+          }');
+        ?>
 
       <?php elseif (isset($page)) : ?>
         <?php require('app/admin/components/page/page.phtml') ?>
-
       <?php endif ?>
     </main>
 

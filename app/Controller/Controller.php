@@ -16,7 +16,7 @@ abstract class Controller {
 
     // Main view
     if ($this->view) {
-      extract($this->data); // Extract data for view
+      extract($this->data); // Extract data for view from array
       require("./app/" . $this->view . ".phtml"); // Require view
     }
   }

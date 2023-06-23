@@ -1,0 +1,9 @@
+<?php
+  $pages = isset($data->pages) ? $data->pages : null;
+?>
+
+<ul class="g-pages">
+  <?php foreach ($pages as $page) : ?>
+    <li><?= $page->name ?> - <a href="<?= "cms/pages/edit/" . $page->id ?>">Upravit</a></li>
+  <?php endforeach ?>
+</ul>

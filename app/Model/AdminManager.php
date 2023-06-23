@@ -50,6 +50,14 @@ class AdminManager
     ");
   }
 
+  public function addPage(string $name): int
+  {
+    return Db::query("
+      INSERT INTO page (name)
+      VALUES ('$name');
+    ");
+  }
+
   public function getPage(string $page): array
   {
     return Db::queryOne("

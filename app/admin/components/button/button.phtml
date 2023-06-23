@@ -1,0 +1,13 @@
+<?php
+  $action = isset($data->action) ? $data->action : null;
+  $title = isset($data->title) ? $data->title : "button";
+
+  $attrs = implode(' ', [
+    'class="button"',
+    $action ? 'data-action="' . $action . '"' : null,
+  ]);
+?>
+
+<button <?= $attrs ?>>
+  <span class="btn__title"><?= $title ?></span>
+</button>
