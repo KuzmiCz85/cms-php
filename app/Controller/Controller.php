@@ -9,7 +9,11 @@ abstract class Controller {
   public function renderView(): void
   {
     if ($this->view) {
+      // Init template component manager
+      $tempMn = new TemplateManager;
+      // Extract data for view
       extract($this->data);
+      // Require view
       require("./app/" . $this->view . ".phtml");
     }
   }
