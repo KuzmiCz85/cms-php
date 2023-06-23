@@ -24,6 +24,9 @@
               <?= $block['block'] ?> with fields:
 
               <?php foreach ($block['fields'] as $field) {
+                $props = $field;
+                $props['content'] = isset($block['data']) ? $block['data']->{$field['name']} : null;
+
                 require('app/admin/components/field/field.phtml');
               } ?>
             </div>

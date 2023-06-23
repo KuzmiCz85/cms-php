@@ -12,8 +12,7 @@ class RouterController extends Controller {
 
     $params = explode("/", $parsedUrl['path']);
 
-    print_r($params);
-    echo "<br>";
+    var_dump($params);
 
     return $params;
   }

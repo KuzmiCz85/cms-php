@@ -1,11 +1,11 @@
 <?php
-  $name = isset($field['name']) ? $field['name'] : null;
-  $type = in_array($field['type'], ["text_line"]) ? $field['type'] : null;
+  $name = isset($props['name']) ? $props['name'] : null;
+  $type = in_array($props['type'], ["text_line"]) ? $props['type'] : null;
+  $content = isset($props['content']) ? $props['content'] : null;
 ?>
 
 <div class="field" data-field-name="<?= $name ?>">
   <?php if ($type === "text_line") : ?>
-    <input type="text" value="test-value" />
-      type is text line
+    <input type="text" value="<?= $content ?>" />
   <?php endif ?>
 </div>
