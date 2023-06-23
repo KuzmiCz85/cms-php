@@ -1,6 +1,13 @@
 <?php
 class TemplateManager
 {
+  protected string $source = "";
+
+  public function setSource($src) : void
+  {
+    if ($src) $this->source = $src;
+  }
+
   public function include(string $path, string $props = "") : void
   {
     if ($props) {
@@ -8,6 +15,6 @@ class TemplateManager
     } else
       $props = null;
 
-    require("app/admin/components/" . $path);
+    require($this->source . $path);
   }
 }
