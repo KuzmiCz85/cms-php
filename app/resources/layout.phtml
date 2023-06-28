@@ -6,6 +6,6 @@
 
 <?php if(isset($page['blocks'])) : ?>
   <?php foreach ($page['blocks'] as $block) : ?>
-    <?= $block->data->title ?>
+    <?= var_dump($block->data) ?>
   <?php endforeach ?>
 <?php endif ?>

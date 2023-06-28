@@ -1,11 +1,14 @@
 <?php
   $name = isset($props['name']) ? $props['name'] : null;
-  $type = in_array($props['type'], ["text_line"]) ? $props['type'] : null;
+  $type = in_array($props['type'], ["text_line", "text_editor"]) ? $props['type'] : null;
   $content = isset($props['content']) ? $props['content'] : null;
 ?>
 
 <div class="field" data-field-name="<?= $name ?>">
   <?php if ($type === "text_line") : ?>
     <input type="text" value="<?= $content ?>" />
+
+  <?php elseif ($type === "text_editor") : ?>
+    <textarea class="editor field__editor" data-field-name="<?= $name ?>"><?= $content ?></textarea>
   <?php endif ?>
 </div>

@@ -59,6 +59,7 @@ class BlockManager {
     $res = 0;
 
     foreach ($blocks as $block) {
+      $block->data = json_encode($block->data); // Parse block data to string
       $params = (array) $block; // Parse from stdObject to array
 
       var_dump($params); // Print for JS console.log

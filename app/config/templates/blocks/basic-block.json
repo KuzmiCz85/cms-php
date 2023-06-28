@@ -6,10 +6,12 @@
     {
       "type": "text_line",
       "name": "title"
-
     },{
       "type": "text_line",
       "name": "content"
+    },{
+      "type": "text_editor",
+      "name": "entry-content"
     }
   ]
 }

@@ -1,3 +1,5 @@
+import { initEditor } from "../../assets/tinymce.js";
+
 // Object for storing page props
 const pageProps = { data: {} }
 
@@ -13,10 +15,6 @@ const storeValue = (elem, obj) => {
 // Save button submit
 const saveBtnSubmit = (event) => {
   event.preventDefault()
-
-  // Parse blocks data to string
-  if (pageProps.blocks)
-    pageProps.blocks.forEach(block => block.data = JSON.stringify(block.data))
 
   fetch('cms/save', {
     method: "POST",
@@ -39,6 +37,10 @@ const pageService = (page) => {
   // Init service for page blocks
   const pageBlocks = page.querySelector(".page__blocks")
   if (pageBlocks) blocksService(pageBlocks)
+
+  // Init editor with callback for saving content
+  const hasEditor = page.querySelector(".editor")
+  if (hasEditor) initEditor(".editor", editorService)
 
   // Init save button
   const saveBtn = document.getElementById("saveBtn")
@@ -82,28 +84,47 @@ const blocksService = (elem) => {
 
     blockFields.forEach(field => {
       const name = field.dataset.fieldName
-      const input = field.querySelector("input")
+      const input = field.querySelector("input") || field.querySelector("textarea")
       const val = input.value ? input.value : null
 
       // Store value on init
       block.data[name] = val
 
-      // Store value on change
-      input.addEventListener("change", event => {
-        let valNew = input.value ? input.value : null
+      // For textarea with tinymce
+      if (input.type === "textarea" && input.classList.contains("editor")) return
 
-        block.data[name] = valNew
+      else {
+        // Store classic input value on change
+        input.addEventListener("change", event => {
+          let valNew = input.value ? input.value : null
 
-        console.log(block.data)
-      })
+          block.data[name] = valNew
+
+          console.log(block.data)
+        })
+      }
     })
 
     // Store existing block on init
     pageProps.blocks.push(block)
-  });
+  })
 
   //console.log(pageProps)
 };
+
+const editorService = (val, elem) => {
+  const block = elem.closest(".block")
+  const blockId = elem.closest(".block").dataset.id
+  const name = elem.dataset.fieldName
+
+  console.log(name)
+
+  pageProps.blocks.forEach(block => {
+    if (block.id === blockId) block.data[name] = val
+  });
+
+  console.log(pageProps.blocks)
+}
 
 const page = () => {
   const page = document.querySelector(".page")
@@ -113,4 +134,4 @@ const page = () => {
   pageService(page)
 };
 
-export default page();
+page();
