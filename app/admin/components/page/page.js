@@ -90,7 +90,7 @@ const blocksService = (elem) => {
 
       // Store value on change
       input.addEventListener("change", event => {
-        const valNew = input.value ? input.value : null
+        let valNew = input.value ? input.value : null
 
         block.data[name] = valNew
 

@@ -4,6 +4,7 @@ class AdminController extends Controller {
   public function process(array $params): void
   {
     $adminMn = new AdminManager; // Init admin manager
+    $blockMn = new BlockManager; // Init block manager
     $tempMn = new TemplateManager; // Init template manager
     $tempMn->setSource("app/admin/components/");
 
@@ -13,7 +14,7 @@ class AdminController extends Controller {
       // Edit page main data
       $adminMn->editPage($page->id, $page->data);
       // Edit page blocks
-      if (isset($page->blocks)) $adminMn->editPageBlocks($page->id, $page->blocks);
+      if (isset($page->blocks)) $blockMn->editBlocks($page->id, $page->blocks);
       exit;
     }
 
@@ -34,7 +35,7 @@ class AdminController extends Controller {
     // Show page details
     if (isset($params[2]) && $params[2] === "edit" && !empty($params[3])) {
       $this->data['page'] = $adminMn->getPage($params[3]);
-      $this->data['blocks'] = $adminMn->getPageBlocks($params[3]);
+      $this->data['blocks'] = $blockMn->getBlocks($params[3]);
     }
 
     $this->components = "app/admin/components/";

@@ -20,12 +20,12 @@
       <ul>
         <?php foreach ($blocks as $block) : ?>
           <li>
-            <div class="block" data-id="<?= $block['id'] ?>">
-              <?= $block['block'] ?> with fields:
+            <div class="block" data-id="<?= $block->id ?>">
+              <?= $block->block ?> with fields:
 
-              <?php foreach ($block['fields'] as $field) {
+              <?php foreach ($block->fields as $field) {
                 $props = $field;
-                $props['content'] = isset($block['data']) ? $block['data']->{$field['name']} : null;
+                $props['content'] = isset($block->data) ? $block->data->{$field['name']} : null;
 
                 require('app/admin/components/field/field.phtml');
               } ?>

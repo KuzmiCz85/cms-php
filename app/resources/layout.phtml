@@ -3,3 +3,9 @@
 <?php if(isset($page)) : ?>
   <?= $page['name'] ?>
 <?php endif ?>
+
+<?php if(isset($page['blocks'])) : ?>
+  <?php foreach ($page['blocks'] as $block) : ?>
+    <?= $block->data->title ?>
+  <?php endforeach ?>
+<?php endif ?>
