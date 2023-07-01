@@ -76,4 +76,28 @@ class BlockManager {
 
     return $res;  // Returns number of edite rows
   }
+
+  public function getApprBlocks(): array
+  {
+    $files = scandir('./app/config/templates/blocks');
+    $blocks = [];
+
+    // Pick only json files
+    foreach ($files as $file) {
+      if (str_ends_with($file, '.json')) {
+        $block = str_replace('.json', "", $file);
+
+        array_push($blocks, $block);
+      }
+    }
+    return $blocks;
+  }
+
+  public function addBlock(string $page, string $block): int
+  {
+    return Db::query("
+      INSERT INTO page_block (page, block)
+      VALUES ('$page', '$block');
+    ");
+  }
 }

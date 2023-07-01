@@ -1,7 +1,7 @@
 <?php
-  $name = isset($props['name']) ? $props['name'] : null;
-  $type = in_array($props['type'], ["text_line", "text_editor"]) ? $props['type'] : null;
-  $content = isset($props['content']) ? $props['content'] : null;
+  $name = isset($data->name) ? $data->name : null;
+  $type = isset($data->type) && in_array($data->type, ["text_line", "text_editor"]) ? $data->type : null;
+  $content = isset($data->content) ? $data->content : null;
 ?>
 
 <div class="field" data-field-name="<?= $name ?>">

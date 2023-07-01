@@ -6,9 +6,8 @@ class AdminController extends Controller {
     $adminMn = new AdminManager; // Init admin manager
     $blockMn = new BlockManager; // Init block manager
     $tempMn = new TemplateManager; // Init template manager
-    $tempMn->setSource("app/admin/components/");
 
-    // Save new page data
+    // Save new data for page
     if (isset($params[1]) && $params[1] === "save") {
       $page = json_decode(file_get_contents("php://input"));
       // Edit page main data
@@ -26,6 +25,7 @@ class AdminController extends Controller {
     // Add new page
     if (isset($params[1]) && $params[1] === "pages" && isset($params[2]) && $params[2] === "add") {
       $adminMn->addPage("Empty page"); // Add new page to Db
+      $tempMn->setSource("app/admin/components/");
       $tempMn->include("group/pages-group/pages-group.phtml", '{
         "pages": ' . json_encode($adminMn->getPages()) . '
       }');
@@ -36,6 +36,28 @@ class AdminController extends Controller {
     if (isset($params[2]) && $params[2] === "edit" && !empty($params[3])) {
       $this->data['page'] = $adminMn->getPage($params[3]);
       $this->data['blocks'] = $blockMn->getBlocks($params[3]);
+    }
+
+    // Ask for available blocks
+    if (isset($params[1]) && $params[1] === "get-blocks") {
+      $page = json_decode(file_get_contents("php://input"));
+      $blocks = $blockMn->getApprBlocks();
+      // Prepare template for blocks list
+      foreach ($blocks as $block)
+        echo("<li>${block}</li>");
+      exit;
+    }
+
+    // Add new block to page
+    if (isset($params[1]) && $params[1] === "add-block") {
+      $block = json_decode(file_get_contents("php://input"));
+      $blockMn->addBlock($block->page, $block->block);
+      $blocks = $blockMn->getBlocks($block->page);
+      $tempMn->setSource("app/admin/components/");
+      $tempMn->include("group/blocks-group/blocks-group.phtml", '{
+        "blocks": ' . json_encode($blocks) . '
+      }');
+      exit;
     }
 
     $this->components = "app/admin/components/";

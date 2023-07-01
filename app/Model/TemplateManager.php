@@ -2,6 +2,7 @@
 class TemplateManager
 {
   protected string $source = "";
+  protected $tempMn;
 
   public function setSource($src) : void
   {
@@ -12,6 +13,10 @@ class TemplateManager
   {
     if ($data) $data = json_decode($data);
     else $data = null;
+
+    // Create instance of template manager for components nesting
+    $tempMn = new TemplateManager;
+    $tempMn->setSource($this->source);
 
     require($this->source . $path);
   }

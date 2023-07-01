@@ -13,7 +13,7 @@ const callAction = async (action) => {
 }
 
 const btnInit = () => {
-  const btns = document.querySelectorAll(".button")
+  const btns = document.querySelectorAll(".btn")
 
   if (!btns.length > 0) return
 

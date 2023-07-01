@@ -8,7 +8,6 @@ const storeValue = (elem, obj) => {
   if (!elem.id) return
 
   obj[elem.id] = elem.value
-
   //console.log(obj)
 };
 
@@ -35,7 +34,7 @@ const pageService = (page) => {
   if (pageMainProps) dataService(pageMainProps)
 
   // Init service for page blocks
-  const pageBlocks = page.querySelector(".page__blocks")
+  const pageBlocks = page.querySelector(".g-blocks")
   if (pageBlocks) blocksService(pageBlocks)
 
   // Init editor with callback for saving content
@@ -55,16 +54,14 @@ const dataService = (elem) => {
   if (propsInputs.length === 0) return
 
   propsInputs.forEach(input => {
-
     // Store input value on init
     storeValue(input, pageProps.data)
 
     // Store new value on change
     input.addEventListener("change", event => storeValue(input, pageProps.data))
   });
-
   //console.log(pageProps)
-}
+};
 
 // Service for page blocks
 const blocksService = (elem) => {
@@ -99,34 +96,29 @@ const blocksService = (elem) => {
           let valNew = input.value ? input.value : null
 
           block.data[name] = valNew
-
-          console.log(block.data)
+          //console.log(block.data)
         })
       }
     })
-
     // Store existing block on init
     pageProps.blocks.push(block)
   })
-
   //console.log(pageProps)
 };
 
 const editorService = (val, elem) => {
-  const block = elem.closest(".block")
   const blockId = elem.closest(".block").dataset.id
   const name = elem.dataset.fieldName
 
-  console.log(name)
+  //console.log(name)
 
   pageProps.blocks.forEach(block => {
     if (block.id === blockId) block.data[name] = val
   });
-
-  console.log(pageProps.blocks)
+  //console.log(pageProps.blocks)
 }
 
-const page = () => {
+export const page = () => {
   const page = document.querySelector(".page")
 
   if (!page) return

@@ -15,26 +15,18 @@
     ?>
   </div>
 
-  <?php if (isset($blocks)) : ?>
-    <div class="page__blocks">
-      <ul>
-        <?php foreach ($blocks as $block) : ?>
-          <li>
-            <div class="block" data-id="<?= $block->id ?>">
-              <?= $block->block ?> with fields:
+  <?php
+    $tempMn->include("button/add-block-button/add-block-button.phtml", '{
+      "action": "",
+      "title": "Add block"
+    }');
+  ?>
 
-              <?php foreach ($block->fields as $field) {
-                $props = $field;
-                $props['content'] = isset($block->data) && isset($block->data->{$field['name']}) ? $block->data->{$field['name']} : null;
-
-                require('app/admin/components/field/field.phtml');
-              } ?>
-            </div>
-          </li>
-        <?php endforeach ?>
-      </ul>
-    </div>
-  <?php endif ?>
+  <?php
+    $tempMn->include("group/blocks-group/blocks-group.phtml", '{
+      "blocks": ' . json_encode($blocks) . '
+    }');
+  ?>
 
   <button id="saveBtn" type="button">
     Save
