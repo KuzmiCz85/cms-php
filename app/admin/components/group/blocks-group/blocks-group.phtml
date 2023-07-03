@@ -5,8 +5,12 @@
 <div class="g-blocks">
   <ul>
     <?php foreach ($blocks as $block) : ?>
+      <?php
+        $blockName = "block_" . $block->id;
+      ?>
+
       <li>
-        <div class="block" data-id="<?= $block->id ?>">
+        <div class="block" data-id="<?= $block->id ?>" data-name="<?= $blockName ?>">
           <?= $block->block ?> with fields:
 
           <?php foreach ($block->fields as $field) {
@@ -16,6 +20,18 @@
               "content": ' . json_encode(isset($block->data) && isset($block->data->{$field->name}) ? $block->data->{$field->name} : null) .'
             }');
           } ?>
+
+          <?php
+            $tempMn->include("button/button.phtml", '{
+              "action": "delete_target",
+              "target": {
+                "name": "' . $blockName . '",
+                "type": "block",
+                "parent": "g-blocks"
+              },
+              "title": "Delete block"
+            }');
+          ?>
         </div>
       </li>
     <?php endforeach ?>

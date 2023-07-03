@@ -1,10 +1,14 @@
 <?php
   $action = isset($data->action) ? $data->action : null;
   $title = isset($data->title) ? $data->title : "button";
+  $target = isset($data->target) ? $data->target : null;
 
   $attrs = implode(' ', [
     'class="btn"',
     $action ? 'data-action="' . $action . '"' : null,
+    isset($target->name) ? 'data-target-name="' . $target->name . '"' : null,
+    isset($target->type) ? 'data-target-type="' . $target->type . '"' : null,
+    isset($target->parent) ? 'data-target-parent="' . $target->parent . '"' : null,
   ]);
 ?>
 

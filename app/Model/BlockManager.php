@@ -100,4 +100,13 @@ class BlockManager {
       VALUES ('$page', '$block');
     ");
   }
+
+  public function deleteBlock(string $id, string $page): int
+  {
+    return Db::query("
+      DELETE FROM page_block
+      WHERE id = ? AND page = ?;
+    ",
+    array_merge(array($id), array($page)));
+  }
 }

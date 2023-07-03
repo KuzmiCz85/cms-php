@@ -1,3 +1,4 @@
+import { btn } from "../button.js";
 import { page } from "../../page/page.js";
 
 const addBlockBtn = () => {
@@ -42,8 +43,9 @@ const optService = (opts, list) => {
       list.classList.remove("--js-visible")
       // Send request and refresh blocks
       blocks.outerHTML = await updBlocks(block)
-      // Init page services after blocks refresh
-      page()
+      // Init lost services after blocks refresh
+      btn();
+      page();
     })
   })
 };
