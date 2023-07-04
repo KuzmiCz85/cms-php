@@ -53,4 +53,13 @@ class AdminManager
     ",
     array_merge(array_values($params), array($page)));
   }
+
+  public function deletePage(string $page): int
+  {
+    return Db::query("
+      DELETE FROM page
+      WHERE id = ?
+    ",
+    array($page));
+  }
 }

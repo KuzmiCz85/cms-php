@@ -32,6 +32,13 @@ class AdminController extends Controller {
       exit;
     }
 
+    // Delete page
+    if (isset($params[1]) && $params[1] === "delete-page") {
+      $page = json_decode(file_get_contents("php://input"));
+      $adminMn->deletePage($page->id);
+      exit;
+    }
+
     // Show page details
     if (isset($params[2]) && $params[2] === "edit" && !empty($params[3])) {
       $this->data['page'] = $adminMn->getPage($params[3]);

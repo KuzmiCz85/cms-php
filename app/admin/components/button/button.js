@@ -1,40 +1,42 @@
 import { page } from "../page/page.js"
 
+const request = async (action, data = {}) => {
+  const res = await fetch(action, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  return res.text()
+};
+
 // Perform button action
-const callAction = async (dataset) => {
+const callAction = async (btnDataset) => {
 
-  if (dataset.action === "cms/pages/add") {
-    const res = await fetch(action, {
-      method: "POST",
-    })
-    /* .then(res => res.text())
-    .then(data => console.log(data)) */
-
+  if (btnDataset.action === "add_page") {
     const pagesList = document.querySelector(".g-pages")
-    pagesList.outerHTML = await res.text()
+    pagesList.outerHTML = await request("cms/pages/add")
   }
 
-  if (dataset.action === "delete_target") {
+  if (btnDataset.action === "delete_target") {
     const pageId = document.querySelector(".page").dataset.pageId
-    const target = document.querySelector(`[data-name="${dataset.targetName}"]`)
-    const targetId = target.dataset.id
-    const parent = document.querySelector(`.${dataset.targetParent}`)
+    const target = document.querySelector(`[data-name="${btnDataset.targetName}"]`)
+    if (target) targetId = target.dataset.id
+    const parent = document.querySelector(`.${btnDataset.targetParent}`)
 
-    if (dataset.targetType === "block") {
-      const res = await fetch("cms/delete-block", {
-        method: "POST",
-        body: JSON.stringify({
-          id: targetId,
-          page: pageId
-        })
+    if (btnDataset.targetType === "block") {
+      parent.outerHTML = await request("cms/delete-block", {
+        id: targetId,
+        page: pageId
       })
-      /* .then(res => res.text())
-      .then(data => console.log(data)) */
-
-      parent.outerHTML = await res.text()
       // Reload lost services
       btn()
       page()
+    }
+
+    if (btnDataset.targetType === "page") {
+      console.log(await request("cms/delete-page", {
+        id: pageId
+      }))
+      window.location.replace("cms/pages")
     }
   }
 }

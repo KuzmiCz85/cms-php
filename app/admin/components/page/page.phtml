@@ -17,7 +17,6 @@
 
   <?php
     $tempMn->include("button/add-block-button/add-block-button.phtml", '{
-      "action": "",
       "title": "Add block"
     }');
   ?>
@@ -31,4 +30,14 @@
   <button id="saveBtn" type="button">
     Save
   </button>
+
+  <?php
+    $tempMn->include("button/button.phtml", '{
+      "action": "delete_target",
+      "target": {
+        "type": "page"
+      },
+      "title": "Delete page"
+    }');
+  ?>
 </section>
