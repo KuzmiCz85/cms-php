@@ -109,4 +109,14 @@ class BlockManager {
     ",
     array_merge(array($id), array($page)));
   }
+
+  public function deletePageBlocks(string $page): int
+  {
+    return Db::query(
+      "
+        DELETE FROM page_block
+        WHERE page = ?;
+      ",
+      array($page));
+  }
 }

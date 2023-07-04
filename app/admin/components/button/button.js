@@ -9,20 +9,20 @@ const request = async (action, data = {}) => {
 };
 
 // Perform button action
-const callAction = async (btnDataset) => {
+const callAction = async (elem) => {
 
-  if (btnDataset.action === "add_page") {
+  if (elem.dataset.action === "add_page") {
     const pagesList = document.querySelector(".g-pages")
     pagesList.outerHTML = await request("cms/pages/add")
   }
 
-  if (btnDataset.action === "delete_target") {
+  if (elem.dataset.action === "delete_target") {
     const pageId = document.querySelector(".page").dataset.pageId
-    const target = document.querySelector(`[data-name="${btnDataset.targetName}"]`)
-    if (target) targetId = target.dataset.id
-    const parent = document.querySelector(`.${btnDataset.targetParent}`)
+    const target = document.querySelector(`[data-name="${elem.dataset.targetName}"]`)
+    const parent = document.querySelector(`.${elem.dataset.targetParent}`)
 
-    if (btnDataset.targetType === "block") {
+    if (elem.dataset.targetType === "block") {
+      const targetId = target.dataset.id
       parent.outerHTML = await request("cms/delete-block", {
         id: targetId,
         page: pageId
@@ -32,14 +32,15 @@ const callAction = async (btnDataset) => {
       page()
     }
 
-    if (btnDataset.targetType === "page") {
-      console.log(await request("cms/delete-page", {
+    if (elem.dataset.targetType === "page") {
+      await request("cms/delete-page", {
         id: pageId
-      }))
-      window.location.replace("cms/pages")
+      })
+
+      window.location.href = "cms/pages"
     }
   }
-}
+};
 
 export const btn = () => {
   const btns = document.querySelectorAll(".btn")
@@ -49,8 +50,7 @@ export const btn = () => {
   btns.forEach(btn => btn.addEventListener("click", event => {
     event.preventDefault()
 
-    if (btn.dataset.action)
-      callAction(btn.dataset)
+    callAction(btn)
   }))
 };
 

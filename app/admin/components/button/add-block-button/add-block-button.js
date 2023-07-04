@@ -1,6 +1,11 @@
 import { btn } from "../button.js";
 import { page } from "../../page/page.js";
 
+const getBlocks = async () => {
+  const res = await fetch('cms/get-blocks')
+  return res.text()
+};
+
 const addBlockBtn = () => {
   const btn = document.querySelector(".add-block-btn")
 
@@ -12,10 +17,7 @@ const addBlockBtn = () => {
   // Btn opener - on click get blocks, add to list and show list
   opener.addEventListener("click", async () => {
     // Get blocks and assign to list
-    const getBlocks = () => {
-      return fetch('cms/get-blocks')
-        .then(res => res.text())
-    }
+
     list.innerHTML = await getBlocks() // Fill list
 
     // Show list of blocks
@@ -51,11 +53,12 @@ const optService = (opts, list) => {
 };
 
 // Add selected block and return new blocks
-const updBlocks = (block) => {
-  return fetch('cms/add-block', {
+const updBlocks = async (block) => {
+  const res = await fetch('cms/add-block', {
     method: "POST",
     body: JSON.stringify(block)
-  }).then(res => res.text())
+  })
+  return res.text()
 };
 
 addBlockBtn();

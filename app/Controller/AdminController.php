@@ -32,10 +32,11 @@ class AdminController extends Controller {
       exit;
     }
 
-    // Delete page
+    // Delete page and related blocks
     if (isset($params[1]) && $params[1] === "delete-page") {
       $page = json_decode(file_get_contents("php://input"));
       $adminMn->deletePage($page->id);
+      $blockMn->deletePageBlocks($page->id);
       exit;
     }
 
