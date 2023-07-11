@@ -11,6 +11,7 @@ class BlockManager {
 
       foreach ($blockCfg->fields as $field) array_push($fields, get_object_vars($field));
 
+      $block['name'] = $blockCfg->name;
       $block['fields'] = $fields;
 
       $blocks[$i] = $block;

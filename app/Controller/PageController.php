@@ -13,6 +13,7 @@ class PageController extends Controller {
       $this->data['page']['blocks'] = $blockMn->getBlocks($this->data['page']['id']);
     }
 
-    $this->view = "resources/layout";
+    $this->components= "app/resources/layout/components/";
+    $this->view = "resources/layout/components/base-layout/base-layout";
   }
 }

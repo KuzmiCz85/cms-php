@@ -1,6 +1,6 @@
 {
-  "type": "basic-block",
-  "name": "basic-block",
+  "type": "basic-section",
+  "name": "Basic section",
 
   "fields": [
     {
@@ -11,7 +11,7 @@
       "name": "content"
     },{
       "type": "text_editor",
-      "name": "entry-content"
+      "name": "entry_content"
     }
   ]
 }

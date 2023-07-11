@@ -1,0 +1,9 @@
+<?php
+  $blocks = isset($data->blocks) ? $data->blocks : null;
+?>
+
+<?php foreach ($blocks as $block) : ?>
+  <?php
+    $tempMn->include("section/" . $block->block . "/" . $block->block . ".phtml", json_encode($block->data));
+  ?>
+<?php endforeach ?>
