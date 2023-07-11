@@ -1,5 +1,9 @@
 .add-block-btn {
+  cursor: pointer;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-block-btn__blocks {

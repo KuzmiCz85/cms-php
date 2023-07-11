@@ -1,5 +1,31 @@
 <section class="page" data-page-id="<?= $page['id'] ?>">
-  <h2>Page detail</h2>
+  <header class="page__header">
+    <h2 class="page__heading">
+      Page detail
+    </h2>
+
+    <div class="page__btns">
+      <?php
+        $tempMn->include("button/add-block-button/add-block-button.phtml", '{
+          "title": "Add block"
+        }');
+      ?>
+
+      <button class="btn" id="saveBtn" type="button">
+        Save
+      </button>
+
+      <?php
+        $tempMn->include("button/button.phtml", '{
+          "action": "delete_target",
+          "target": {
+            "type": "page"
+          },
+          "title": "Delete page"
+        }');
+      ?>
+    </div>
+  </header>
 
   <div class="page__data">
     <label>Page name:</label>
@@ -16,28 +42,8 @@
   </div>
 
   <?php
-    $tempMn->include("button/add-block-button/add-block-button.phtml", '{
-      "title": "Add block"
-    }');
-  ?>
-
-  <?php
     $tempMn->include("group/blocks-group/blocks-group.phtml", '{
       "blocks": ' . json_encode($blocks) . '
-    }');
-  ?>
-
-  <button id="saveBtn" type="button">
-    Save
-  </button>
-
-  <?php
-    $tempMn->include("button/button.phtml", '{
-      "action": "delete_target",
-      "target": {
-        "type": "page"
-      },
-      "title": "Delete page"
     }');
   ?>
 </section>

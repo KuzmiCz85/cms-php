@@ -1,0 +1,18 @@
+.g-blocks {
+  margin-bottom: 32px;
+}
+
+.block {
+  margin-bottom: 16px;
+}
+
+.block__heading {
+  margin-bottom: 8px;
+}
+
+.block__fields {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-bottom: 8px;
+}

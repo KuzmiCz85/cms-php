@@ -3,6 +3,7 @@
   <head>
     <base href="/localhost" />
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Simple website CMS</title>
 
@@ -10,33 +11,33 @@
   </head>
 
   <body>
-    <header>
-      <h1>Main page for CMS editor</h1>
-    </header>
+    <div class="main__row">
+      <header class="main__header">
+        <h1 class="main__heading">CMS-PHP</h1>
 
-    <nav>
-      <a href="cms/pages">Get pages</a>
-    </nav>
+        <nav class="main__menu">
+          <ul>
+            <li><a href="cms/pages">Pages list</a></li>
+          </ul>
+        </nav>
+      </header>
 
-    <main>
-      <?php if (isset($pages)) : ?>
-        <?php
-          $tempMn->include("group/pages-group/pages-group.phtml", '{
-            "pages": ' . json_encode($pages) . '
-          }');
-        ?>
+      <main class="main__content">
+        <?php if (isset($pages)) : ?>
+          <?php
+            $tempMn->include("group/pages-group/pages-group.phtml", '{
+              "pages": ' . json_encode($pages) . '
+            }');
+          ?>
 
-        <?php
-          $tempMn->include("button/button.phtml", '{
-            "action": "add_page",
-            "title": "Add page"
-          }');
-        ?>
+        <?php elseif (isset($page)) : ?>
+          <?php require('app/admin/components/page/page.phtml') ?>
 
-      <?php elseif (isset($page)) : ?>
-        <?php require('app/admin/components/page/page.phtml') ?>
-      <?php endif ?>
-    </main>
+        <?php else : ?>
+          <h2>Welcome to CMS-PHP.</h2>
+        <?php endif ?>
+      </main>
+    </div>
 
     <script type="module" src="app/admin/main.js"></script>
   </body>

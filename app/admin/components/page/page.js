@@ -1,4 +1,4 @@
-import { initEditor } from "../../assets/tinymce.js";
+import { initEditor } from "../../assets/scripts/tinymce.js";
 
 // Object for storing page props
 const pageProps = { data: {} }
