@@ -11,9 +11,24 @@ class PageController extends Controller {
     // Call data for homepage
     if (empty($params[0]) && $pageMn->getHome()) {
       $this->data['page'] = $pageMn->getHome();
-      $this->data['page']['blocks'] = $blockMn->getBlocks($this->data['page']['id']);
-      $this->data['page']['menu']['items'] = $menuMn->getItems();
     }
+
+    // Url slug contains only single page
+    elseif (isset($params[0])) {
+      $page = $pageMn->getPage($params[0]);
+
+      if ($page) { // Page exists
+        $this->data['page'] = $pageMn->getPage($params[0]);
+      }
+
+      else { // Page doesn't exist
+        // Set page as 404
+        echo("page doesn't exist");
+      }
+    }
+
+    $this->data['page']['blocks'] = $blockMn->getBlocks($this->data['page']['id']);
+    $this->data['page']['menu']['items'] = $menuMn->getItems();
 
     $this->components= "app/resources/layout/components/";
     $this->view = "resources/layout/components/layout-base/layout-base";

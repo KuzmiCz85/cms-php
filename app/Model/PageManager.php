@@ -10,4 +10,14 @@ class PageManager {
     ",
     array(true));
   }
+
+  public function getPage($slug): array|bool
+  {
+    return Db::queryOne("
+      SELECT *
+      FROM page
+      WHERE url_slug = ?
+    ",
+    array($slug));
+  }
 }
