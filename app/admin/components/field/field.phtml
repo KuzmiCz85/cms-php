@@ -1,10 +1,15 @@
 <?php
   $name = isset($data->name) ? $data->name : null;
   $type = isset($data->type) && in_array($data->type, ["text_line", "text_editor"]) ? $data->type : null;
+  $label = isset($data->label) ? $data->label : null;
   $content = isset($data->content) ? $data->content : null;
 ?>
 
 <div class="field" data-field-name="<?= $name ?>">
+  <?php if ($label) : ?>
+    <h4 class="field__heading"><?= $label ?></h4>
+  <?php endif ?>
+
   <?php if ($type === "text_line") : ?>
     <input type="text" value="<?= $content ?>" />
 

@@ -5,13 +5,16 @@
   "fields": [
     {
       "type": "text_line",
-      "name": "title"
+      "name": "title",
+      "label": "Heading"
     },{
       "type": "text_line",
-      "name": "content"
+      "name": "content",
+      "label": "Perex"
     },{
       "type": "text_editor",
-      "name": "entry_content"
+      "name": "entry_content",
+      "label": "Content"
     }
   ]
 }
