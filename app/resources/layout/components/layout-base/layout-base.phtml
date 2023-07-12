@@ -26,6 +26,10 @@
 
     <header>
       <h1>Base layout</h1>
+
+      <?php
+        $tempMn->include("main-nav/main-nav.phtml", json_encode($page['menu']));
+      ?>
     </header>
 
     <main>

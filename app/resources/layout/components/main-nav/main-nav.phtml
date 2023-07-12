@@ -1,0 +1,11 @@
+<?php
+  $items = isset($data->items) ? $data->items : null;
+?>
+
+<nav class="main-nav">
+  <ul class="main-nav__list">
+    <?php foreach ($items as $item) : ?>
+      <li><a href="http://cms-php/<?= $item ?>"><?= $item ?></a></li>
+    <?php endforeach ?>
+  </ul>
+</nav>

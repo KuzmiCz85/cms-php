@@ -5,8 +5,8 @@ class AdminManager
   {
     Db::query("
       UPDATE page
-      SET home = ?
-      WHERE home = ?
+      SET is_home = ?
+      WHERE is_home = ?
     ",
     array_merge(array(0), array(1)));
   }
@@ -41,8 +41,8 @@ class AdminManager
   {
     $params = (array) $params;  // Parse from stdClass to array
 
-    // Check if homepage is changed. Turn-off obsolete home if true
-    if ($params['home'] === "1") $this->nullHome();
+    // Check if homepage is changed. Turn-off obsolete is_home if true
+    if ($params['is_home'] === "1") $this->nullHome();
 
     var_dump($params); // Print for JS console.log
 

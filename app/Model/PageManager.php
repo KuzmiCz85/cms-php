@@ -6,7 +6,7 @@ class PageManager {
     return Db::queryOne("
       SELECT *
       FROM page
-      WHERE home = ?
+      WHERE is_home = ?
     ",
     array(true));
   }

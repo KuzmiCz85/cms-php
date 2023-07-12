@@ -1,16 +1,18 @@
 const checkbox = () => {
-  const box = document.querySelector(".checkbox");
+  const boxes = document.querySelectorAll(".checkbox");
 
-  // Return if box doesn't exist
-  if (!box) return
+  // Return if boxes doesn't exist
+  if (!boxes) return
 
-  const input = box.querySelector("input")
+  boxes.forEach(box => {
+    const input = box.querySelector("input")
 
-  input.addEventListener("click", event => {
-    const inputVal = input.getAttribute("value")
+    input.addEventListener("click", event => {
+      const inputVal = input.getAttribute("value")
 
-    if (inputVal === "0") input.setAttribute("value", "1")
-    else input.setAttribute("value", "0")
+      if (inputVal === "0") input.setAttribute("value", "1")
+      else input.setAttribute("value", "0")
+    })
   })
 };
 
