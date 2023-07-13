@@ -49,4 +49,9 @@ class Db {
     $result->execute($params);
     return $result->rowCount();
   }
+
+  public static function lastId(): int
+  {
+    return self::$stream->lastInsertId();
+  }
 }

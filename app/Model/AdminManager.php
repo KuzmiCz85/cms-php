@@ -1,6 +1,11 @@
 <?php
 class AdminManager
 {
+  private function parseSlugText($text): string
+  {
+    return str_replace(" ", "-", strtolower($text));
+  }
+
   private function nullHome(): void
   {
     Db::query("
@@ -21,10 +26,28 @@ class AdminManager
 
   public function addPage(string $name): int
   {
-    return Db::query("
+    // Insert new page to Db
+    Db::query("
       INSERT INTO page (name)
-      VALUES ('$name');
-    ");
+      VALUES (?)
+    ",
+    array($name));
+
+    $lastPageId = Db::lastId();
+
+    // Change new page name and url_slug based on last id
+    return Db::query("
+    UPDATE page
+    SET name = ?, url_slug = ?
+    WHERE id = ?
+    ",
+    array_merge(
+      array(
+        $name . " " . $lastPageId, // Page name
+        $this->parseSlugText($name) . "-" . $lastPageId // Page slug
+      ),
+      array($lastPageId)
+    ));
   }
 
   public function getPage(string $page): array
