@@ -47,6 +47,14 @@
         "value": ' . $page['in_menu'] . '
       }');
     ?>
+
+    <div>
+      <label>Status:</label>
+      <select id="status">
+        <option <?php if ($page['status'] === "concept") echo('selected="selected"');?> value="concept">concept</option>
+        <option <?php if ($page['status'] === "publish") echo('selected="selected"');?> value="publish">publish</option>
+      </select>
+    </div>
   </div>
 
   <?php

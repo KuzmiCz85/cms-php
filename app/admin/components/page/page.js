@@ -8,7 +8,7 @@ const storeValue = (elem, obj) => {
   if (!elem.id) return
 
   obj[elem.id] = elem.value
-  //console.log(obj)
+  console.log(obj)
 };
 
 // Save button submit
@@ -49,7 +49,7 @@ const pageService = (page) => {
 // Service for main page props
 const dataService = (elem) => {
   // Inputs service
-  const propsInputs = elem.querySelectorAll("input")
+  const propsInputs = elem.querySelectorAll("input, select")
 
   if (propsInputs.length === 0) return
 

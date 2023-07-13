@@ -17,7 +17,7 @@ class PageController extends Controller {
     elseif (isset($params[0])) {
       $page = $pageMn->getPage($params[0]);
 
-      if ($page) { // Page exists
+      if ($page && $page['status'] === "publish") { // Page exists and has been published
         $this->data['page'] = $pageMn->getPage($params[0]);
       }
 

@@ -1,7 +1,7 @@
 <?php
 class AdminManager
 {
-  private function parseSlugText($text): string
+  private function parseSlugText(string $text): string
   {
     return str_replace(" ", "-", strtolower($text));
   }

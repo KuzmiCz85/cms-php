@@ -6,8 +6,8 @@ class MenuManager {
     return Db::queryAll("
       SELECT name, url_slug
       FROM page
-      WHERE in_menu = ?
+      WHERE in_menu = ? and status = ?
     ",
-    array(true));
+    array(true, "publish"));
   }
 }
