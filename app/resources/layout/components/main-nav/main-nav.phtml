@@ -5,7 +5,7 @@
 <nav class="main-nav">
   <ul class="main-nav__list">
     <?php foreach ($items as $item) : ?>
-      <li><a href="http://cms-php/<?= $item ?>"><?= $item ?></a></li>
+      <li><a href="<?= $item->url_slug ?>"><?= $item->name ?></a></li>
     <?php endforeach ?>
   </ul>
 </nav>

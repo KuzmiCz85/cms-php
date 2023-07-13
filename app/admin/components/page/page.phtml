@@ -31,6 +31,9 @@
     <label>Page name:</label>
     <input type="text" id="name" value="<?= $page['name'] ?>" />
 
+    <label>Url slug:</label>
+    <input type="text" id="url_slug" value="<?= $page['url_slug'] ?>" />
+
     <?php
       $tempMn->include("checkbox/checkbox.phtml", '{
         "id": "is_home",
