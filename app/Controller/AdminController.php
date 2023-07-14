@@ -1,12 +1,22 @@
 <?php
 
 class AdminController extends Controller {
+
+  public function verifyUser(): void
+  {
+    $userMn = new UserManager;
+    $user = $userMn->getUser();
+    if (!$user)
+      $this->redirect("cms/login");
+  }
+
   public function process(array $params): void
   {
     $adminMn = new AdminManager; // Init admin manager
     $blockMn = new BlockManager; // Init block manager
     $tempMn = new TemplateManager; // Init template manager
     $tempMn->setSource("app/admin/components/");
+    $userMn = new UserManager; // Init user manager
 
     // Save new data for page
     if (isset($params[1]) && $params[1] === "save") {
@@ -76,6 +86,22 @@ class AdminController extends Controller {
       }');
       exit;
     }
+
+    if (isset($params[1]) && $params[1] === "login") {
+      $tempMn->include("login/login.phtml");
+
+      if ($_POST) {
+        try {
+          $userMn->login($_POST['name'], $_POST['pwd']);
+          $this->redirect("cms");
+        } catch (UserError $err) {
+          # echo ($err->getMessage());
+        }
+      }
+      exit;
+    }
+
+    $this->verifyUser();
 
     $this->components = "app/admin/components/";
     $this->view = "admin/main";

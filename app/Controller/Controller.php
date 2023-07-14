@@ -20,4 +20,11 @@ abstract class Controller {
       require("./app/" . $this->view . ".phtml"); // Require view
     }
   }
+
+  public function redirect($url): never
+  {
+    header("Location: /$url");
+    header("Connection: close");
+    exit;
+  }
 }

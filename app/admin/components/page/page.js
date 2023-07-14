@@ -8,7 +8,7 @@ const storeValue = (elem, obj) => {
   if (!elem.id) return
 
   obj[elem.id] = elem.value
-  console.log(obj)
+  //console.log(obj)
 };
 
 // Save button submit

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Autoloader
 function autoloader(string $class): void
 {
