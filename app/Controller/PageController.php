@@ -19,15 +19,14 @@ class PageController extends Controller {
 
       if ($page && $page['status'] === "publish") { // Page exists and has been published
         $this->data['page'] = $pageMn->getPage($params[0]);
+        $this->data['page']['blocks'] = $blockMn->getBlocks($this->data['page']['id']);
       }
 
       else { // Page doesn't exist
-        // Set page as 404
-        echo("page doesn't exist");
+        $this->data['page'] = $pageMn->get404(); // Set page as 404
       }
     }
 
-    $this->data['page']['blocks'] = $blockMn->getBlocks($this->data['page']['id']);
     $this->data['page']['menu']['items'] = $menuMn->getItems();
 
     $this->components= "app/resources/layout/components/";

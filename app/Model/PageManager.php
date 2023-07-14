@@ -20,4 +20,18 @@ class PageManager {
     ",
     array($slug));
   }
+
+  public function get404(): array
+  {
+    $block404 = new stdClass();
+    $block404->block = "404-section";
+    $block404->data = "";
+
+    return array(
+      "name" => "404",
+      "blocks" => [
+        $block404
+      ],
+    );
+  }
 }
