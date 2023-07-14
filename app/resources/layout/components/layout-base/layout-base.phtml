@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8">
+
+    <title>
+      <?php if(isset($page)) : ?>
+        <?= $page['name'] ?> | Site name
+      <?php else : ?>
+        Unnamed page | Site name
+      <?php endif ?>
+    </title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="author" content="KuzmiCz">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+
+  </head>
+
+  <body>
+
+    <header>
+      <h1>Base layout</h1>
+
+      <?php
+        $tempMn->include("main-nav/main-nav.phtml", json_encode($page['menu']));
+      ?>
+    </header>
+
+    <main>
+      <?php
+        $tempMn->include("page/default-page/default-page.phtml", '{
+          "blocks": ' . json_encode($page['blocks']) . '
+        }');
+      ?>
+    </main>
+
+    <!--<footer>Some footer</footer>-->
+
+    <!--<script src="index.js"></script>-->
+
+  </body>
+</html>

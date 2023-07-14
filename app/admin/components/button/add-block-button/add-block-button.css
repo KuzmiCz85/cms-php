@@ -1,0 +1,23 @@
+.add-block-btn {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-block-btn__blocks {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+  background-color: white;
+}
+
+.add-block-btn__blocks li:hover {
+  background-color: grey;
+}
+
+.add-block-btn__blocks.--js-visible {
+  display: block;
+}

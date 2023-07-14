@@ -1,0 +1,75 @@
+@import url('./assets/styles/settings/s-reset.css');
+@import url('./assets/styles/elements/e-body.css');
+@import url('./assets/styles/elements/e-list.css');
+
+@import url('./components/button/button.css');
+@import url('./components/button/add-block-button/add-block-button.css');
+@import url('./components/checkbox/checkbox.css');
+@import url('./components/field/field.css');
+@import url('./components/page/page.css');
+@import url('./components/group/blocks-group/blocks-group.css');
+@import url('./components/group/pages-group/pages-group.css');
+
+.main__row {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main__header {
+  width: 100%;
+  padding: 24px;
+  background-color: #0066CC;
+}
+
+.main__heading {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.main__menu ul {
+  text-align: center;
+}
+
+.main__menu a {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: #fff;
+  transition: 0.3s ease;
+  transition-property: text-decoration-color;
+}
+
+.main__menu a:hover {
+  text-decoration-color: transparent;
+}
+
+.main__content {
+  flex-grow: 1;
+  padding: 24px;
+  background-color: #ddd;
+}
+
+/* Style up to small devices */
+@media only screen and (min-width: 576px) {
+
+  .main__row {
+    flex-direction: row;
+  }
+
+  .main__header {
+    width: 250px;
+    padding: 32px;
+  }
+
+  .main__heading {
+    margin-bottom: 64px;
+  }
+
+  .main__menu ul {
+    text-align: left;
+  }
+
+  .main__content {
+    padding: 32px;
+  }
+}

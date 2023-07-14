@@ -1,0 +1,26 @@
+<?php
+  $pages = isset($data->pages) ? $data->pages : null;
+?>
+
+<div class="g-pages">
+  <header class="g-pages__header">
+    <h2 class="g-pages__heading">
+      Pages list
+    </h2>
+
+    <div class="g-pages__btns">
+      <?php
+        $tempMn->include("button/button.phtml", '{
+          "action": "add_page",
+          "title": "Add page"
+        }');
+      ?>
+    </div>
+  </header>
+
+  <ul>
+    <?php foreach ($pages as $page) : ?>
+      <li><?= $page->name ?> - <a href="<?= "cms/pages/edit/" . $page->id ?>">Upravit</a></li>
+    <?php endforeach ?>
+  </ul>
+</div>

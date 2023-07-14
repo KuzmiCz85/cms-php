@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/localhost" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Simple website CMS</title>
+
+    <link rel="stylesheet" type="text/css" href="app/admin/main.css" />
+  </head>
+
+  <body>
+    <div class="main__row">
+      <header class="main__header">
+        <h1 class="main__heading">CMS-PHP</h1>
+
+        <nav class="main__menu">
+          <ul>
+            <li><a href="cms/pages">Pages list</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main__content">
+        <?php if (isset($pages)) : ?>
+          <?php
+            $tempMn->include("group/pages-group/pages-group.phtml", '{
+              "pages": ' . json_encode($pages) . '
+            }');
+          ?>
+
+        <?php elseif (isset($page)) : ?>
+          <?php require('app/admin/components/page/page.phtml') ?>
+
+        <?php else : ?>
+          <h2>Welcome to CMS-PHP.</h2>
+        <?php endif ?>
+      </main>
+    </div>
+
+    <script type="module" src="app/admin/main.js"></script>
+  </body>
+</html>

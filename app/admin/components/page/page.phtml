@@ -1,0 +1,65 @@
+<section class="page" data-page-id="<?= $page['id'] ?>">
+  <header class="page__header">
+    <h2 class="page__heading">
+      Page detail
+    </h2>
+
+    <div class="page__btns">
+      <?php
+        $tempMn->include("button/add-block-button/add-block-button.phtml", '{
+          "title": "Add block"
+        }');
+      ?>
+
+      <button class="btn" id="saveBtn" type="button">
+        Save
+      </button>
+
+      <?php
+        $tempMn->include("button/button.phtml", '{
+          "action": "delete_target",
+          "target": {
+            "type": "page"
+          },
+          "title": "Delete page"
+        }');
+      ?>
+    </div>
+  </header>
+
+  <div class="page__data">
+    <label>Page name:</label>
+    <input type="text" id="name" value="<?= $page['name'] ?>" />
+
+    <label>Url slug:</label>
+    <input type="text" id="url_slug" value="<?= $page['url_slug'] ?>" />
+
+    <?php
+      $tempMn->include("checkbox/checkbox.phtml", '{
+        "id": "is_home",
+        "label": "Homepage:",
+        "value": ' . $page['is_home'] . '
+      }');
+
+      $tempMn->include("checkbox/checkbox.phtml", '{
+        "id": "in_menu",
+        "label": "In menu:",
+        "value": ' . $page['in_menu'] . '
+      }');
+    ?>
+
+    <div>
+      <label>Status:</label>
+      <select id="status">
+        <option <?php if ($page['status'] === "concept") echo('selected="selected"');?> value="concept">concept</option>
+        <option <?php if ($page['status'] === "publish") echo('selected="selected"');?> value="publish">publish</option>
+      </select>
+    </div>
+  </div>
+
+  <?php
+    $tempMn->include("group/blocks-group/blocks-group.phtml", '{
+      "blocks": ' . json_encode($blocks) . '
+    }');
+  ?>
+</section>

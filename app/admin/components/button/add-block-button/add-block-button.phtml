@@ -1,0 +1,19 @@
+<?php
+  $action = isset($data->action) ? $data->action : null;
+  $title = isset($data->title) ? $data->title : "button";
+
+  $attrs = implode(' ', [
+    'class="add-block-btn"',
+    $action ? 'data-action="' . $action . '"' : null,
+  ]);
+?>
+
+<div <?= $attrs ?>>
+  <div class="add-block-btn__opener">
+    <span class="add-block-btn__title"><?= $title ?></span>
+  </div>
+
+  <ul class="add-block-btn__blocks">
+    <!-- Blocks -->
+  </ul>
+</div>

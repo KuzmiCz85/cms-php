@@ -1,0 +1,41 @@
+<?php
+  $blocks = isset($data->blocks) ? $data->blocks : null;
+?>
+
+<div class="g-blocks">
+  <ul>
+    <?php foreach ($blocks as $block) : ?>
+      <?php
+        $blockName = "block_" . $block->id;
+      ?>
+
+      <li>
+        <div class="block" data-id="<?= $block->id ?>" data-name="<?= $blockName ?>">
+          <h3 class="block__heading">
+            <?= $block->block ?>
+          </h3>
+
+          <div class="block__fields">
+            <?php foreach ($block->fields as $field) {
+              $field->content = isset($block->data) && isset($block->data->{$field->name}) ? $block->data->{$field->name} : null;
+
+              $tempMn->include("field/field.phtml", json_encode($field));
+            } ?>
+          </div>
+
+          <?php
+            $tempMn->include("button/button.phtml", '{
+              "action": "delete_target",
+              "target": {
+                "name": "' . $blockName . '",
+                "type": "block",
+                "parent": "g-blocks"
+              },
+              "title": "Delete block"
+            }');
+          ?>
+        </div>
+      </li>
+    <?php endforeach ?>
+  </ul>
+</div>

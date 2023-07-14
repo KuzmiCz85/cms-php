@@ -1,0 +1,33 @@
+.g-pages__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.g-pages__heading {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.g-pages__btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Style up to small devices */
+@media only screen and (min-width: 576px) {
+
+  .g-pages__header {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .g-pages__heading {
+    margin-bottom: 0;
+    text-align: left;
+  }
+}

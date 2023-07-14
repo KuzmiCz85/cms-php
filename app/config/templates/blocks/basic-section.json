@@ -1,0 +1,20 @@
+{
+  "type": "basic-section",
+  "name": "Basic section",
+
+  "fields": [
+    {
+      "type": "text_line",
+      "name": "title",
+      "label": "Heading"
+    },{
+      "type": "text_line",
+      "name": "content",
+      "label": "Perex"
+    },{
+      "type": "text_editor",
+      "name": "entry_content",
+      "label": "Content"
+    }
+  ]
+}
